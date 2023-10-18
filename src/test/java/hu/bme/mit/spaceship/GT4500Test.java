@@ -86,6 +86,8 @@ class GT4500Test {
         try (InputStream expectedOut = new FileInputStream(outputFile)) {
           String expected = normalizeString(new String(expectedOut.readAllBytes(), StandardCharsets.UTF_8));
           String actual = normalizeString(actualOut.toString());
+          if (!expected.equals(actual))
+            System.out.println("Error in: "+inputFile);
           assertEquals(expected, actual);
         }
       }
